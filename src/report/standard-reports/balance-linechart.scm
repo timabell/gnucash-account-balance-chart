@@ -129,20 +129,19 @@
                               gnc:pagename-display optname-markercolor)))
 
 ;;TESTING TESTING 1 2 2 2 2
-	(testvalue (get-option gnc:pagename-general optname-to-date))
+	(testvalue (get-option gnc:pagename-general optname-to-date)) ;;is ok
+	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
+;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date))) ;;fails
 
-;;	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
-;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date)))
-
-	(to-date-tp (gnc:timepair-end-day-time 
-		(gnc:date-option-absolute-time
-		(get-option gnc:pagename-general 
-				optname-to-date))))
-	(from-date-tp (gnc:timepair-start-day-time 
-		(gnc:date-option-absolute-time
-			(get-option gnc:pagename-general 
-				optname-from-date))))
-         (interval (get-option gnc:pagename-general optname-stepsize))
+;;	(to-date-tp (gnc:timepair-end-day-time 
+;;		(gnc:date-option-absolute-time
+;;		(get-option gnc:pagename-general 
+;;				optname-to-date)))) ;;fails
+;;	(from-date-tp (gnc:timepair-start-day-time 
+;;		(gnc:date-option-absolute-time
+;;			(get-option gnc:pagename-general 
+;;				optname-from-date)))) ;;fails
+  ;;       (interval (get-option gnc:pagename-general optname-stepsize))
 
         ;; document will be the HTML document that we return.
         (document (gnc:make-html-document))
@@ -212,7 +211,7 @@
 ;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
 ;;		(sprintf #f
 ;;			(_ "%s")
-			(gnc-print-date to-date-tp)
+;;			(gnc-print-date to-date-tp)
 ;;)
 ;;	)))
 
