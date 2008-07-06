@@ -1,28 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; balance-linechart.scm: A line chart report of account balances.
-;; Based on hello world and price-scatter.
-;;
-;; By Tim Abell <tim.abell@timwise.co.uk>
-;;
-;; This program is free software; you can redistribute it and/or    
-;; modify it under the terms of the GNU General Public License as   
-;; published by the Free Software Foundation; either version 2 of   
-;; the License, or (at your option) any later version.              
-;;                                                                  
-;; This program is distributed in the hope that it will be useful,  
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of   
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the    
-;; GNU General Public License for more details.                     
-;;                                                                  
-;; You should have received a copy of the GNU General Public License
-;; along with this program; if not, contact:
-;;
-;; Free Software Foundation           Voice:  +1-617-542-5942
-;; 51 Franklin Street, Fifth Floor    Fax:    +1-617-542-2652
-;; Boston, MA  02110-1301,  USA       gnu@gnu.org
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (define-module (gnucash report balance-linechart))
 (use-modules (gnucash main)) ;; FIXME: delete after we finish modularizing.
 (use-modules (srfi srfi-1)) ;;needed for printf I think
@@ -36,10 +11,6 @@
 
 (gnc:module-load "gnucash/report/report-system" 0)
 (gnc:module-load "gnucash/gnome-utils" 0) ;for gnc-build-url
-
-;; This function will generate a set of options that GnuCash
-;; will use to display a dialog where the user can select
-;; values for your report's parameters.
 
 (define optname-marker (N_ "Marker"))
 (define optname-markercolor (N_ "Marker Color"))
@@ -99,12 +70,6 @@
     (gnc:options-set-default-section options gnc:pagename-general)
     options))
 
-;; This is the rendering function. It accepts a database of options
-;; and generates an object of type <html-document>.  See the file
-;; report-html.txt for documentation; the file report-html.scm
-;; includes all the relevant Scheme code. The option database passed
-;; to the function is one created by the options-generator function
-;; defined above.
 (define (balance-linechart-renderer report-obj)
   ;; These are some helper functions for looking up option values.
   (define (get-option section name)
@@ -130,26 +95,12 @@
 
 ;;TESTING TESTING 1 2 2 2 2
 	(testvalue (get-option gnc:pagename-general optname-to-date)) ;;is ok
-	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
+;;	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
 ;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date))) ;;fails
 
-;;	(from-date-tp (gnc:timepair-start-day-time 
-;;		(gnc:date-option-absolute-time
-;;			(get-option gnc:pagename-general
-;;				optname-from-date)))) ;;fails
-;;	(to-date-tp (gnc:timepair-end-day-time 
-;;		(gnc:date-option-absolute-time
-;;		(get-option gnc:pagename-general
-;;				optname-to-date)))) ;;fails
-  ;;       (interval (get-option gnc:pagename-general optname-stepsize))
-
-        ;; document will be the HTML document that we return.
         (document (gnc:make-html-document))
          (chart (gnc:make-html-scatter)))
 
-;;    (let 
-;;	((time-string (strftime "%X" (localtime (current-time)))))
-	
 	;; Here's where we fill the report document with content.
 	(gnc:html-document-set-style!
 	document "body" 
@@ -158,75 +109,6 @@
 	
 	;; the title of the report
 	(gnc:html-document-set-title! document (_ "Balance line chart"))
-	
-;;	(gnc:html-scatter-set-title! chart report-title)
-;;	(gnc:html-scatter-set-width! chart width)
-;;	(gnc:html-scatter-set-height! chart height)
-;;	(gnc:html-scatter-set-marker! chart 
-;;					(case marker
-;;					((circle) "circle")
-;;					((cross) "cross")
-;;					((square) "square")
-;;					((asterisk) "asterisk")
-;;					((filledcircle) "filled circle")
-;;					((filledsquare) "filled square")))
-;;	(gnc:html-scatter-set-markercolor! chart mcolor)
-;;TODO finish this bit:
-;;	(gnc:html-document-add-object!
-;;	 document
-;;	(gnc:make-html-text
-;;	(gnc:html-markup-p (_ "some text"))))
-
-;;      (gnc:html-document-add-object!
-;;	document
-;;	(gnc:make-html-text
-;;	(gnc:html-markup-p (sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp)))))
-
-;;	(gnc:html-scatter-set-subtitle!
-;;	  chart (sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp)))
-;;	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
-
-;;TESTING TESTING 1 2 2 2 2
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f "%d" testvalue)
-;;	)))
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp))
-;;	)))
-
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s")
-;;			(gnc-print-date to-date-tp))
-;;	)))
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s")
-;;			(gnc-print-date to-date-tp)
-;;)
-;;	)))
-
-;;TODO Still can't work out how to get date as string
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f ("%s") (gnc-print-date
-;;			(gnc:timepair-start-day-time
-;;				(gnc:date-option-absolute-time
-;;					(get-option gnc:pagename-general optname-from-date)
-;;				)
-;;			))
-;;		)
-;;	)))
-
-
       document))
 
 ;; Here we define the actual report
