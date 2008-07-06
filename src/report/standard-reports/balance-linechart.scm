@@ -138,14 +138,14 @@
 		(gnc:date-option-absolute-time
 		(gnc:option-value (get-option gnc:pagename-general
 				optname-to-date))))) ;;fails
-  ;;       (interval (get-option gnc:pagename-general optname-stepsize))
+       (interval (get-option gnc:pagename-general optname-stepsize))
 
         ;; document will be the HTML document that we return.
         (document (gnc:make-html-document))
          (chart (gnc:make-html-scatter)))
 
-;;    (let 
-;;	((time-string (strftime "%X" (localtime (current-time)))))
+ (let 
+	((time-string (strftime "%X" (localtime (current-time)))))
 	
 	;; Here's where we fill the report document with content.
 	(gnc:html-document-set-style!
@@ -156,73 +156,35 @@
 	;; the title of the report
 	(gnc:html-document-set-title! document (_ "Balance line chart"))
 	
-;;	(gnc:html-scatter-set-title! chart report-title)
-;;	(gnc:html-scatter-set-width! chart width)
-;;	(gnc:html-scatter-set-height! chart height)
-;;	(gnc:html-scatter-set-marker! chart 
-;;					(case marker
-;;					((circle) "circle")
-;;					((cross) "cross")
-;;					((square) "square")
-;;					((asterisk) "asterisk")
-;;					((filledcircle) "filled circle")
-;;					((filledsquare) "filled square")))
-;;	(gnc:html-scatter-set-markercolor! chart mcolor)
-;;TODO finish this bit:
-;;	(gnc:html-document-add-object!
-;;	 document
-;;	(gnc:make-html-text
-;;	(gnc:html-markup-p (_ "some text"))))
+	(gnc:html-scatter-set-title! chart report-title)
+	(gnc:html-scatter-set-width! chart width)
+	(gnc:html-scatter-set-height! chart height)
+	(gnc:html-scatter-set-marker! chart 
+					(case marker
+					((circle) "circle")
+					((cross) "cross")
+					((square) "square")
+					((asterisk) "asterisk")
+					((filledcircle) "filled circle")
+					((filledsquare) "filled square")))
+	(gnc:html-scatter-set-markercolor! chart mcolor)
 
-;;      (gnc:html-document-add-object!
-;;	document
-;;	(gnc:make-html-text
-;;	(gnc:html-markup-p (sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp)))))
+  (gnc:html-document-add-object! document
+		(gnc:make-html-text
+		(gnc:html-markup-p (sprintf #f
+			(_ "%s to %s")
+			(gnc-print-date from-date-tp)
+			(gnc-print-date to-date-tp)))))
 
-;;	(gnc:html-scatter-set-subtitle!
-;;	  chart (sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp)))
-;;	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
+	(gnc:html-scatter-set-subtitle!
+	  chart (sprintf #f
+			(_ "%s to %s")
+			(gnc-print-date from-date-tp)
+			(gnc-print-date to-date-tp)))
+	
+	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
 
-;;TESTING TESTING 1 2 2 2 2
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f "%d" testvalue)
-;;	)))
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s to %s")
-;;			(gnc-print-date from-date-tp)
-;;			(gnc-print-date to-date-tp))
-;;	)))
-
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s")
-;;			(gnc-print-date to-date-tp))
-;;	)))
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f
-;;			(_ "%s")
-;;			(gnc-print-date to-date-tp)
-;;)
-;;	)))
-
-;;TODO Still can't work out how to get date as string
-;;	(gnc:html-document-add-object! document (gnc:make-html-text (gnc:html-markup-p
-;;		(sprintf #f ("%s") (gnc-print-date
-;;			(gnc:timepair-start-day-time
-;;				(gnc:date-option-absolute-time
-;;					(get-option gnc:pagename-general optname-from-date)
-;;				)
-;;			))
-;;		)
-;;	)))
-
+ )
 
       document))
 
