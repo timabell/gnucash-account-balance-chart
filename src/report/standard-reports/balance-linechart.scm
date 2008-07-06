@@ -133,14 +133,14 @@
 	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
 ;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date))) ;;fails
 
-;;	(to-date-tp (gnc:timepair-end-day-time 
-;;		(gnc:date-option-absolute-time
-;;		(get-option gnc:pagename-general 
-;;				optname-to-date)))) ;;fails
 ;;	(from-date-tp (gnc:timepair-start-day-time 
 ;;		(gnc:date-option-absolute-time
-;;			(get-option gnc:pagename-general 
+;;			(get-option gnc:pagename-general
 ;;				optname-from-date)))) ;;fails
+;;	(to-date-tp (gnc:timepair-end-day-time 
+;;		(gnc:date-option-absolute-time
+;;		(get-option gnc:pagename-general
+;;				optname-to-date)))) ;;fails
   ;;       (interval (get-option gnc:pagename-general optname-stepsize))
 
         ;; document will be the HTML document that we return.
