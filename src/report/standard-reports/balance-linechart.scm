@@ -32,6 +32,7 @@
   (let* (
 
 	(testvalue (get-option gnc:pagename-general optname-to-date)) ;;is ok
+	(testvalue3 (gnc:date-option-absolute-time (gnc:option-value testvalue)));;??
 ;;	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
 ;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date))) ;;fails
 
