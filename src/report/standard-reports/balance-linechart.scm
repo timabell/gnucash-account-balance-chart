@@ -108,7 +108,9 @@
 (define (balance-linechart-renderer report-obj)
   ;; These are some helper functions for looking up option values.
   (define (get-option section name)
-    (gnc:lookup-option (gnc:report-options report-obj) section name))
+		 (gnc:lookup-option (gnc:report-options report-obj) section name)
+	)
+
   
   (define (op-value section name)
     (gnc:option-value (get-option section name)))
@@ -128,19 +130,14 @@
            (gnc:lookup-option (gnc:report-options report-obj)
                               gnc:pagename-display optname-markercolor)))
 
-;;TESTING TESTING 1 2 2 2 2
-	(testvalue (get-option gnc:pagename-general optname-to-date)) ;;is ok
-	(testvalue2 (gnc:date-option-absolute-time (testvalue)));;fails
-;;	(testvalue (gnc:date-option-absolute-time(get-option gnc:pagename-general optname-to-date))) ;;fails
-
-;;	(from-date-tp (gnc:timepair-start-day-time 
-;;		(gnc:date-option-absolute-time
-;;			(get-option gnc:pagename-general
-;;				optname-from-date)))) ;;fails
-;;	(to-date-tp (gnc:timepair-end-day-time 
-;;		(gnc:date-option-absolute-time
-;;		(get-option gnc:pagename-general
-;;				optname-to-date)))) ;;fails
+	(from-date-tp (gnc:timepair-start-day-time 
+		(gnc:date-option-absolute-time
+			(gnc:option-value (get-option gnc:pagename-general
+				optname-from-date))))) ;;fails
+	(to-date-tp (gnc:timepair-end-day-time 
+		(gnc:date-option-absolute-time
+		(gnc:option-value (get-option gnc:pagename-general
+				optname-to-date))))) ;;fails
   ;;       (interval (get-option gnc:pagename-general optname-stepsize))
 
         ;; document will be the HTML document that we return.
