@@ -1,0 +1,37 @@
+sudo apt-get build-dep gnucash
+sudo apt-get install texinfo
+
+svn co http://svn.gnucash.org/repo/gnucash/trunk .
+./autogen.sh
+./configure --prefix=/opt/gnucash --enable-compile-warnings
+make
+sudo make install
+/opt/gnucash/bin/gnucash
+
+
+sudo ln -s /home/tim/projects/gnucash.git/src/report/standard-reports/balance-linechart.scm /opt/gnucash/share/gnucash/guile-modules/gnucash/report/balance-linechart.scm
+
+====
+notes
+====
+
+tim@lap:~/projects/gnucash/trunk$ /bin/sh -c libtool execute GDB /opt/gnucash-trunk/bin/gnucash --interpreter=mi2 -quiet
+*** Warning: inferring the mode of operation is deprecated.
+*** Future versions of Libtool will require --mode=MODE be specified.
+libtool: warning: cannot infer operation mode without MODE-ARGS
+libtool: you must specify a MODE
+Try `libtool --help' for more information.
+
+bah.
+
+remove libtool from debug shell option
+changed GDB for gdb (on the offchance)
+
+yay
+http://wiki.gnucash.org/wiki/Stack_Trace
+
+
+update report:
+sudo cp /home/tim/projects/gnucash/trunk/src/report/standard-reports/balance-linechart.scm /opt/gnucash/share/gnucash/guile-modules/gnucash/report/
+
+
