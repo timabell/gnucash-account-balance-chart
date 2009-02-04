@@ -1,5 +1,6 @@
+ubuntu 8.10, ibex
 sudo apt-get build-dep gnucash
-sudo apt-get install texinfo
+sudo apt-get install build-essential autoconf texinfo intltool libtool subversion
 
 svn co http://svn.gnucash.org/repo/gnucash/trunk .
 ./autogen.sh
