@@ -3,14 +3,24 @@ sudo apt-get build-dep gnucash
 sudo apt-get install build-essential autoconf texinfo intltool libtool subversion
 
 svn co http://svn.gnucash.org/repo/gnucash/trunk .
+ or
+git clone git://github.com/timabell/gnucash.git gnucash.git
+cd gnucash.git
 ./autogen.sh
 ./configure --prefix=/opt/gnucash --enable-compile-warnings
 make
 sudo make install
 /opt/gnucash/bin/gnucash
 
+my report:
+git clone git://github.com/timabell/gnucash-account-balance-chart.git gnucash-account-balance-chart.git
+cd gnucash-account-balance-chart.git
 
-sudo ln -s /home/tim/projects/gnucash.git/src/report/standard-reports/balance-linechart.scm /opt/gnucash/share/gnucash/guile-modules/gnucash/report/balance-linechart.scm
+install my lame half finished report:
+sudo ./install.sh
+
+back out and remove my report
+sudo ./remove.sh
 
 ====
 notes
