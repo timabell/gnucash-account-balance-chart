@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; balance-linechart.scm: A line chart report of account balances.
-;; Based on hello world and price-scatter.
+;; Based on hello world, price-scatter and average-balance.
 ;;
 ;; By Tim Abell <tim.abell@timwise.co.uk>
 ;;
@@ -44,6 +44,10 @@
 ;; will use to display a dialog where the user can select
 ;; values for your report's parameters.
 
+(define optname-display-depth (N_ "Account Display Depth"))
+(define optname-show-subaccounts (N_ "Always show sub-accounts"))
+(define optname-accounts (N_ "Account"))
+
 (define optname-marker (N_ "Marker"))
 (define optname-markercolor (N_ "Marker Color"))
 (define optname-plot-width (N_ "Plot Width"))
@@ -60,6 +64,18 @@
          (add-option 
           (lambda (new-option)
             (gnc:register-option options new-option))))
+
+    ;; accounts to work on
+    (gnc:options-add-account-selection! 
+     options gnc:pagename-accounts
+     optname-display-depth optname-show-subaccounts
+     optname-accounts "a" 2
+     (lambda ()
+       (gnc:filter-accountlist-type 
+        (list ACCT-TYPE-BANK ACCT-TYPE-CASH ACCT-TYPE-ASSET
+              ACCT-TYPE-STOCK ACCT-TYPE-MUTUAL)
+        (gnc-account-get-descendants-sorted (gnc-get-current-root-account))))
+     #f)
 
     (gnc:options-add-date-interval!
      options gnc:pagename-general
