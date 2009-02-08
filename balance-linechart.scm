@@ -221,11 +221,13 @@
 	(display "\n")
 	(let* (
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
-			(acc-name (gnc-account-get-full-name acc))
+			(acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
+			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
 		(display "first account name: ")
 		(display acc-name)
 		(display "\n")
+		(for-each (lambda (split) (display "split: ") (display split) (display "\n")) splits)
 	)
 ;;	(warn data)
 	;;add the data to the chart
