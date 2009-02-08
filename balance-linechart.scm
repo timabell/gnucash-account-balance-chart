@@ -169,7 +169,12 @@
          (chart (gnc:make-html-scatter)))
 
  (let 
-	((time-string (strftime "%X" (localtime (current-time)))))
+	(
+		(time-string (strftime "%X" (localtime (current-time))))
+		;;create empty data list to store graph data in.
+		( data '())
+	)
+	
 	
 	;; Here's where we fill the report document with content.
 	(gnc:html-document-set-style!
@@ -208,8 +213,6 @@
 	
 	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
 
-	;;create empty data list to store graph data in.
-	(data '())
 	
 	;;TODO: populate the data
 
