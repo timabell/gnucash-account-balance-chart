@@ -157,7 +157,14 @@
              nlist)))))
 
   (let* ((retval '())
-         (push (lambda (l) (set! retval (cons l retval))))
+         (push 
+         	(lambda (l) 
+         		(begin
+	       			(set! retval (cons l retval))
+	       			(display l)
+         		)
+         	)
+         )
          (title (gnc:html-scatter-title scatter))
          (subtitle (gnc:html-scatter-subtitle scatter))
          (x-label (gnc:html-scatter-x-axis-label scatter))
