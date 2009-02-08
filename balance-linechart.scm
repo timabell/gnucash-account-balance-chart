@@ -144,11 +144,11 @@
 				(accounts (get-option gnc:pagename-accounts optname-accounts))
   			(bg-color-op  (get-option   gnc:pagename-display "Background Color"))
         (txt-color-op (get-option   gnc:pagename-display "Text Color"))
-        (report-title (get-option gnc:pagename-general 
+        (report-title (op-value gnc:pagename-general 
                                    gnc:optname-reportname))
-         (height (get-option gnc:pagename-display optname-plot-height))
-         (width (get-option gnc:pagename-display optname-plot-width))
-         (marker (get-option gnc:pagename-display optname-marker))
+         (height (op-value gnc:pagename-display optname-plot-height))
+         (width (op-value gnc:pagename-display optname-plot-width))
+         (marker (op-value gnc:pagename-display optname-marker))
          (mcolor 
           (gnc:color-option->hex-string
            (gnc:lookup-option (gnc:report-options report-obj)
@@ -217,13 +217,13 @@
 	;;TODO: populate the data
 	(set! data '((1 1) (2 2) (3 4)))
 
-	(warn data)
+;;	(warn data)
 	;;add the data to the chart
 	(gnc:html-scatter-set-data! chart data)
-	(warn "data added")
+;;	(warn "data added")
 	;;add chart to ouput
 	(gnc:html-document-add-object! document chart)
-	(warn "chart added")
+;;	(warn "chart added")
  )
 
       document))
