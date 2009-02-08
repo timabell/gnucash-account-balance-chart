@@ -208,6 +208,9 @@
 	
 	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
 
+	;;add chart to ouput
+	(gnc:html-document-add-object! document chart)
+
  )
 
       document))
