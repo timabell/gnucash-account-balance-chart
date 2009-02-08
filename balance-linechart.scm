@@ -216,7 +216,17 @@
 	
 	;;TODO: populate the data
 	(set! data '((1 1) (2 2) (3 4)))
-
+	(display "account list:\n")
+	(display accounts)
+	(display "\n")
+	(let* (
+			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
+			(acc-name (gnc-account-get-full-name acc))
+		)
+		(display "first account name: ")
+		(display acc-name)
+		(display "\n")
+	)
 ;;	(warn data)
 	;;add the data to the chart
 	(gnc:html-scatter-set-data! chart data)
