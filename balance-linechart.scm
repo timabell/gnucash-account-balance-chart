@@ -80,7 +80,7 @@
     (gnc:options-add-date-interval!
      options gnc:pagename-general
      optname-from-date optname-to-date "a")
-
+;;TODO: remove interval option. (going to show all transactions rather than daily totals etc
     (gnc:options-add-interval-choice!
      options gnc:pagename-general optname-stepsize "b" 'MonthDelta)
 
@@ -157,11 +157,11 @@
 	(from-date-tp (gnc:timepair-start-day-time 
 		(gnc:date-option-absolute-time
 			(gnc:option-value (get-option gnc:pagename-general
-				optname-from-date))))) ;;fails
+				optname-from-date)))))
 	(to-date-tp (gnc:timepair-end-day-time 
 		(gnc:date-option-absolute-time
 		(gnc:option-value (get-option gnc:pagename-general
-				optname-to-date))))) ;;fails
+				optname-to-date)))))
        (interval (get-option gnc:pagename-general optname-stepsize))
 
         ;; document will be the HTML document that we return.
