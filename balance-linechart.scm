@@ -215,13 +215,15 @@
 
 	
 	;;TODO: populate the data
+	(set! data '((1 1) (2 2) (3 4)))
 
+	(warn data)
 	;;add the data to the chart
 	(gnc:html-scatter-set-data! chart data)
-
+	(warn "data added")
 	;;add chart to ouput
 	(gnc:html-document-add-object! document chart)
-
+	(warn "chart added")
  )
 
       document))
