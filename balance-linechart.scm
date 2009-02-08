@@ -208,6 +208,14 @@
 	
 	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
 
+	;;create empty data list to store graph data in.
+	(data '())
+	
+	;;TODO: populate the data
+
+	;;add the data to the chart
+	(gnc:html-scatter-set-data! chart data)
+
 	;;add chart to ouput
 	(gnc:html-document-add-object! document chart)
 
