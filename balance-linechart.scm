@@ -165,7 +165,8 @@
        (interval (get-option gnc:pagename-general optname-stepsize))
        
        ;;some empty variables to use later
-       (acc-name "")
+       (acc-name "") ;;to hold the selected account name
+       (item-number 0.0) ;;to hold the index of current split while building the data structure
 
         ;; document will be the HTML document that we return.
         (document (gnc:make-html-document))
@@ -218,7 +219,7 @@
 
 	
 	;;TODO: populate the data
-	(set! data '((1 1) (2 2) (3 4)))
+	(set! data '())
 	(display "account list:\n")
 	(display accounts)
 	(display "\n")
@@ -234,15 +235,14 @@
 			(lambda (split) 
 				(let
 					(
-						(s-amount (xaccSplitGetAmount split))
-						(s-value (xaccSplitGetValue split))
-						(s-balance (xaccSplitGetBalance split))
+						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
 					)
-					(display "split: ") (display split)
-					(display " amount: ") (display s-amount)
-					(display " value: ") (display s-value)
+					(display " item# ") (display item-number)
 					(display " balance: ") (display s-balance)
 					(display "\n")
+					(set! data (append data (list (list item-number s-balance))))
+					(set! item-number (+ item-number 1.0))
+					(warn data)
 				)
 			)
 			splits
