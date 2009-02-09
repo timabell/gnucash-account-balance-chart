@@ -225,6 +225,7 @@
 			(gnc-print-date to-date-tp)))
 	
 	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
+	(gnc:html-scatter-set-x-axis-label! chart "transaction number") ;;TODO: show dates
 
 	
 	;;populate the data
