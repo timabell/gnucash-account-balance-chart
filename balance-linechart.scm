@@ -220,29 +220,29 @@
 	
 	;;populate the data
 	(set! data '()) ;; ((item-number balance) (item-number balance) ... )
-	(display "account list:\n")
-	(display accounts)
-	(display "\n")
+;;	(display "account list:\n")
+;;	(display accounts)
+;;	(display "\n")
 	(let* (
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
 			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
-		(display "first account name: ")
-		(display acc-name)
-		(display "\n")
+;;		(display "first account name: ")
+;;		(display acc-name)
+;;		(display "\n")
 		(for-each 
 			(lambda (split) 
 				(let
 					(
 						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
 					)
-					(display " item# ") (display item-number)
-					(display " balance: ") (display s-balance)
-					(display "\n")
+;;					(display " item# ") (display item-number)
+;;					(display " balance: ") (display s-balance)
+;;					(display "\n")
 					(set! data (append data (list (list item-number s-balance))))
 					(set! item-number (+ item-number 1.0))
-					(warn data)
+;;					(warn data)
 				)
 			)
 			splits

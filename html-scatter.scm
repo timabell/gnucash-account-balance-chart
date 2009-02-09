@@ -161,7 +161,7 @@
          	(lambda (l) 
          		(begin
 	       			(set! retval (cons l retval))
-	       			(display l)
+	       			;;(display l) ;;show generated html on console
          		)
          	)
          )
