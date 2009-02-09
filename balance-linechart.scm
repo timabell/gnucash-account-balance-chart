@@ -23,7 +23,6 @@
 ;;
 ;; TODO: only allow single account selection in options
 ;; TODO: show one line per account (not sure if current graph system supports this)
-;; TODO: filter transaction dates to selected
 ;; TODO: fix x scale
 ;; TODO: show dates in x scale (not sure if current graph system supports this)
 ;; TODO: remove interval option (report doesn't summarise, it shows all transactions).
@@ -246,13 +245,20 @@
 				(let
 					(
 						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
+						(parent (xaccSplitGetParent split)) ;;for date range checking
 					)
-;;					(display " item# ") (display item-number)
-;;					(display " balance: ") (display s-balance)
-;;					(display "\n")
-					(set! data (append data (list (list item-number s-balance))))
-					(set! item-number (+ item-number 1.0))
-;;					(warn data)
+					;;only process if transaction was posted within the range specified in options
+					(if (and (gnc:timepair-le (gnc-transaction-get-date-posted parent) to-date-tp)
+								(gnc:timepair-ge (gnc-transaction-get-date-posted parent) from-date-tp))
+						(begin
+	;;					(display " item# ") (display item-number) ;;debug output
+	;;					(display " balance: ") (display s-balance) ;;debug output
+	;;					(display "\n") ;;debug output
+							(set! data (append data (list (list item-number s-balance))))
+							(set! item-number (+ item-number 1.0))
+	;;					(warn data) ;;debug output
+						)
+					)
 				)
 			)
 			splits
