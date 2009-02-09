@@ -163,6 +163,9 @@
 		(gnc:option-value (get-option gnc:pagename-general
 				optname-to-date)))))
        (interval (get-option gnc:pagename-general optname-stepsize))
+       
+       ;;some empty variables to use later
+       (acc-name "")
 
         ;; document will be the HTML document that we return.
         (document (gnc:make-html-document))
@@ -221,14 +224,35 @@
 	(display "\n")
 	(let* (
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
-			(acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
 			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
+		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
 		(display "first account name: ")
 		(display acc-name)
 		(display "\n")
-		(for-each (lambda (split) (display "split: ") (display split) (display "\n")) splits)
+		(for-each 
+			(lambda (split) 
+				(let
+					(
+						(s-amount (xaccSplitGetAmount split))
+						(s-value (xaccSplitGetValue split))
+						(s-balance (xaccSplitGetBalance split))
+					)
+					(display "split: ") (display split)
+					(display " amount: ") (display s-amount)
+					(display " value: ") (display s-value)
+					(display " balance: ") (display s-balance)
+					(display "\n")
+				)
+			)
+			splits
+		)
 	)
+
+  (gnc:html-document-add-object! document
+		(gnc:make-html-text
+		(gnc:html-markup-p (sprintf #f (_ "Account: %s") acc-name))))
+
 ;;	(warn data)
 	;;add the data to the chart
 	(gnc:html-scatter-set-data! chart data)
