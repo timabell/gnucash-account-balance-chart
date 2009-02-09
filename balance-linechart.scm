@@ -1,8 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; balance-linechart.scm: A line chart report of account balances.
-;; Based on hello world, price-scatter and average-balance.
+;; Based on many of the existing gnucash reports. Notably the price-scatter graph.
 ;;
-;; By Tim Abell <tim.abell@timwise.co.uk>
+;; By Tim Abell <tim@timwise.co.uk>  2009
 ;;
 ;; This program is free software; you can redistribute it and/or    
 ;; modify it under the terms of the GNU General Public License as   
@@ -21,8 +21,18 @@
 ;; 51 Franklin Street, Fifth Floor    Fax:    +1-617-542-2652
 ;; Boston, MA  02110-1301,  USA       gnu@gnu.org
 ;;
-;; TODO: copy loading input data from net-barchart.scm
-;; TODO: copy graph display from price-scatter.scm
+;; TODO: only allow single account selection in options
+;; TODO: show one line per account (not sure if current graph system supports this)
+;; TODO: filter transaction dates to selected
+;; TODO: fix x scale
+;; TODO: show dates in x scale (not sure if current graph system supports this)
+;; TODO: remove interval option (report doesn't summarise, it shows all transactions).
+;; TODO: show loading progress
+;; TODO: handle other currencies
+;; 
+;; TODO: read scheduled transactions (new report)
+;; TODO: read budget  (new report)
+;; TODO: show predicted balance graph  (new report)
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
