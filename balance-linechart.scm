@@ -218,8 +218,8 @@
 	(gnc:html-scatter-set-y-axis-label! chart "£") ;;TODO unharcode currency label
 
 	
-	;;TODO: populate the data
-	(set! data '())
+	;;populate the data
+	(set! data '()) ;; ((item-number balance) (item-number balance) ... )
 	(display "account list:\n")
 	(display accounts)
 	(display "\n")
