@@ -1,6 +1,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; balance-linechart.scm: A line chart report of account balances.
-;; Based on many of the existing gnucash reports. Notably the price-scatter graph.
+;; balance-projection-linechart.scm: A line chart report of projected account balances.
+;; Based on many of the existing gnucash reports. Starting with balance-linechart.
 ;;
 ;; By Tim Abell <tim@timwise.co.uk>  2009
 ;;
@@ -29,9 +29,13 @@
 ;; TODO: show loading progress
 ;; TODO: handle other currencies
 ;; 
+;; TODO: read scheduled transactions
+;; TODO: read budget
+;; TODO: show projected balance graph
+;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(define-module (gnucash report balance-linechart))
+(define-module (gnucash report balance-projection-linechart))
 (use-modules (gnucash main)) ;; FIXME: delete after we finish modularizing.
 (use-modules (srfi srfi-1)) ;;needed for printf I think
 (use-modules (ice-9 slib)) ;;needed for printf I think
@@ -192,7 +196,7 @@
 	'font-color (gnc:color-option->html txt-color-op))
 	
 	;; the title of the report
-	(gnc:html-document-set-title! document (_ "Balance line chart"))
+	(gnc:html-document-set-title! document (_ "Balance projection line chart"))
 	
 	(gnc:html-scatter-set-title! chart report-title)
 	(gnc:html-scatter-set-width! chart width)
@@ -280,9 +284,9 @@
 ;; Here we define the actual report
 (gnc:define-report
  'version 1
- 'name (N_ "Balance line chart")
- 'report-guid "6f78b99926754df1ba01019831079fe8"
- 'menu-tip (N_ "Plot account balance over time.")
+ 'name (N_ "Balance projection line chart")
+ 'report-guid "09928106f70611dd81b5000bdb99ef9e"
+ 'menu-tip (N_ "Plot of projected account balance over time based on scheduled transactions and budgets.")
  'menu-path (list gnc:menuname-asset-liability)
  'options-generator options-generator
  'renderer balance-linechart-renderer)

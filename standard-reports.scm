@@ -89,6 +89,7 @@
 (use-modules (gnucash report trial-balance))
 (use-modules (gnucash report transaction))
 (use-modules (gnucash report balance-linechart))
+(use-modules (gnucash report balance-projection-linechart))
 
 (use-modules (gnucash gnc-module))
 (gnc:module-load "gnucash/engine" 0)

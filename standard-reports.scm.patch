@@ -1,2 +1,3 @@
-90a91
+90a91,92
 > (use-modules (gnucash report balance-linechart))
+> (use-modules (gnucash report balance-projection-linechart))
