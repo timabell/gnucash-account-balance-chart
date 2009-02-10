@@ -6,8 +6,14 @@ if [ -f $installfolder/balance-linechart.scm ]
  	echo "ruthlessly removing old report"
 	rm $installfolder/balance-linechart.scm
 fi
-echo "linking to report"
+if [ -f $installfolder/balance-projection-linechart.scm ]
+ then
+ 	echo "ruthlessly removing old projection report"
+	rm $installfolder/balance-projection-linechart.scm
+fi
+echo "linking to reports"
 ln -s $(pwd)/balance-linechart.scm $installfolder/balance-linechart.scm
+ln -s $(pwd)/balance-projection-linechart.scm $installfolder/balance-projection-linechart.scm
 #check if already patched
 match="$(grep balance-linechart $installfolder/standard-reports.scm | wc -l)"
 if [ $match -eq 0 ]
