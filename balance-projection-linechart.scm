@@ -235,6 +235,8 @@
 ;;	(display "\n")
 	(let* (
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
+			;;TODO: get list of scheduled transactions
+			;;TODO: get budget info
 			(current-balance (xaccAccountGetBalance(acc))) ;;get latest balance of the account
 ;;			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
