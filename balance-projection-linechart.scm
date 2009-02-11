@@ -235,7 +235,8 @@
 ;;	(display "\n")
 	(let* (
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
-			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
+			(current-balance (xaccAccountGetBalance(acc))) ;;get latest balance of the account
+;;			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
 ;;		(display "first account name: ")
