@@ -238,17 +238,16 @@
 			;;TODO: get list of scheduled transactions
 			;;TODO: get budget info
 ;;			(display acc)
-			(current-balance (xaccAccountGetBalance(acc))) ;;get latest balance of the account
+			(current-balance (gnc-numeric-to-double (xaccAccountGetBalance acc))) ;;get latest balance of the account
 ;;			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
-;;		(warn (car accounts))
+;;		(warn (acc))
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
 		(display "first account name: ") ;;debug
 		(display acc-name)
 		(display "\n")
 		(display "latest balance: ") ;;debug
-;;		(display current-balance)
-;;(warn (gnc-numeric-to-double (current-balance)))
+		(display current-balance)
 		(display "\n")
 ;;		(for-each 
 ;;			(lambda (split) 
