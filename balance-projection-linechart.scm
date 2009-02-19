@@ -237,36 +237,42 @@
 			(acc (car accounts)) ;; get first account and use that. ;;TODO: show more accounts
 			;;TODO: get list of scheduled transactions
 			;;TODO: get budget info
+;;			(display acc)
 			(current-balance (xaccAccountGetBalance(acc))) ;;get latest balance of the account
 ;;			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
 		)
+;;		(warn (car accounts))
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
-;;		(display "first account name: ")
-;;		(display acc-name)
-;;		(display "\n")
-		(for-each 
-			(lambda (split) 
-				(let
-					(
-						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
-						(parent (xaccSplitGetParent split)) ;;for date range checking
-					)
+		(display "first account name: ") ;;debug
+		(display acc-name)
+		(display "\n")
+		(display "latest balance: ") ;;debug
+;;		(display current-balance)
+;;(warn (gnc-numeric-to-double (current-balance)))
+		(display "\n")
+;;		(for-each 
+;;			(lambda (split) 
+;;				(let
+;;					(
+;;						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
+;;						(parent (xaccSplitGetParent split)) ;;for date range checking
+;;					)
 					;;only process if transaction was posted within the range specified in options
-					(if (and (gnc:timepair-le (gnc-transaction-get-date-posted parent) to-date-tp)
-								(gnc:timepair-ge (gnc-transaction-get-date-posted parent) from-date-tp))
-						(begin
+;;					(if (and (gnc:timepair-le (gnc-transaction-get-date-posted parent) to-date-tp)
+;;								(gnc:timepair-ge (gnc-transaction-get-date-posted parent) from-date-tp))
+;;						(begin
 	;;					(display " item# ") (display item-number) ;;debug output
 	;;					(display " balance: ") (display s-balance) ;;debug output
 	;;					(display "\n") ;;debug output
-							(set! data (append data (list (list item-number s-balance))))
-							(set! item-number (+ item-number 1.0))
+;;							(set! data (append data (list (list item-number s-balance))))
+;;							(set! item-number (+ item-number 1.0))
 	;;					(warn data) ;;debug output
-						)
-					)
-				)
-			)
-			splits
-		)
+;;						)
+;;					)
+;;				)
+;;			)
+;;			splits
+;;		)
 	)
 
   (gnc:html-document-add-object! document
