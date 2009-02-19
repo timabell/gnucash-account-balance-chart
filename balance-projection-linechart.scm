@@ -239,7 +239,7 @@
 			;;TODO: get budget info
 ;;			(display acc)
 			(current-balance (gnc-numeric-to-double (xaccAccountGetBalance acc))) ;;get latest balance of the account
-;;			(splits (xaccAccountGetSplitList acc)) ;;get splits for account
+			(scheduled-txs (gnc-sx-get-sxes-referencing-account (gnc-get-current-book) acc)) ;;get schedued transactions for account
 		)
 ;;		(warn (acc))
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
