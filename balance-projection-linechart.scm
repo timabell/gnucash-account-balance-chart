@@ -241,6 +241,7 @@
 			(current-balance (gnc-numeric-to-double (xaccAccountGetBalance acc))) ;;get latest balance of the account
 			(scheduled-txs (gnc-sx-get-sxes-referencing-account (gnc-get-current-book) acc)) ;;get schedued transactions for account
 		)
+		(warn scheduled-txs)
 ;;		(warn (acc))
 		(set! acc-name (gnc-account-get-full-name acc)) ;;or xaccAccountGetName
 		(display "first account name: ") ;;debug
