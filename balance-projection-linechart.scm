@@ -250,13 +250,15 @@
 		(display "latest balance: ") ;;debug
 		(display current-balance)
 		(display "\n")
-;;		(for-each 
-;;			(lambda (split) 
-;;				(let
-;;					(
+		(for-each 
+			(lambda (sx) ;;sx is short for scheduled transactions
+				(let
+					(
+						(aaaa sx)
 ;;						(s-balance (gnc-numeric-to-double (xaccSplitGetBalance split)))
 ;;						(parent (xaccSplitGetParent split)) ;;for date range checking
-;;					)
+					)
+					(warn sx)
 					;;only process if transaction was posted within the range specified in options
 ;;					(if (and (gnc:timepair-le (gnc-transaction-get-date-posted parent) to-date-tp)
 ;;								(gnc:timepair-ge (gnc-transaction-get-date-posted parent) from-date-tp))
@@ -269,10 +271,10 @@
 	;;					(warn data) ;;debug output
 ;;						)
 ;;					)
-;;				)
-;;			)
-;;			splits
-;;		)
+				)
+			)
+			scheduled-txs
+		)
 	)
 
   (gnc:html-document-add-object! document
